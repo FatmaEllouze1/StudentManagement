@@ -34,7 +34,7 @@ pipeline {
         script {
             withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                 sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
-                sh 'docker build -t fatmaellouze03/studentmanagement:latest'
+                sh 'docker push fatmaellouze03/studentmanagement:latest'
             }
         }
     }
