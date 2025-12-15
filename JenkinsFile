@@ -26,7 +26,7 @@ pipeline {
          stage(' Build DockerImage') {
             steps {
 
-                sh 'docker build -t fatmaellouze03/studentmanagement:latest -f DockerFile .'
+                sh 'docker build -t fatmaellouze03/studentmanagement:latest -f Dockerfile .'
             }
         }
         stage('Push to Docker Hub') {
@@ -52,13 +52,13 @@ pipeline {
 //                 jacoco()
 //         }
 //         }
-//         stage ('MVN SONARQUBE' ) {
-//             steps {
-//                withCredentials([string(credentialsId: 'jenkins-sonar', variable: 'SONAR_TOKEN' )]) {
-//                sh 'mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN'
-//             }
-//             }
-//         }
+        stage ('MVN SONARQUBE' ) {
+            steps {
+               withCredentials([string(credentialsId: 'jenkins-sonar', variable: 'SONAR_TOKEN' )]) {
+               sh 'mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN'
+            }
+            }
+        }
 //         stage('Deploy to Nexus') {
 //             steps {
 //                 sh 'mvn deploy'
